@@ -12,7 +12,7 @@
 ---
 
 - [sandBox-1](https://pbcgk.csb.app/)
-- [sandBox-2](https://pbcgk.csb.app/)
+- [sandBox-2](https://o2fcw.csb.app/)
 
 > uml
 
