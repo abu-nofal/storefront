@@ -6,10 +6,10 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/material/Menu";
-import { useSelector } from "react-redux";
-
-export default function Header(props) {
-  const state = useSelector((state) => state);
+import { connect } from "react-redux";
+import { showCart } from "../store/actions";
+ function Header(props) {
+ 
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -27,10 +27,15 @@ export default function Header(props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Store Front
             </Typography>
-            <Button color="inherit">Cart ({state.cartReducer.count})</Button>
+            <Button color="inherit" onClick={()=>{props.showCart(!props.cart.show)}} >Cart ({props.cart.count})</Button>
           </Toolbar>
         </AppBar>
       </Box>
     </>
   );
 }
+const mapStateToprops = (state) => {
+  return { cart: state.cartReducer };
+};
+const mapDispatchToProps = { showCart };
+export default connect(mapStateToprops,mapDispatchToProps)(Header);

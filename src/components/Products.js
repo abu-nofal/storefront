@@ -32,52 +32,51 @@ const useStyle = makeStyles((theme) => ({
 
 const Products = (props) => {
   const classes = useStyle();
+
   return (
     <Container className={classes.cardGrid} maxWidth="md">
       <Grid container spacing={4}>
         {props.products.map((product) => {
-          if (props.activeCategory === product.category) {
-            return (
-              <Grid item key={product.name} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={product.img}
-                    title={product.name}
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {product.name}
-                    </Typography>
-                    <Typography>
-                      Category: {product.category} <br />
-                      Price: {product.price} Jd <br />
-                      Inventory: {product.inventoryCount}
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" color="primary">
-                      View
-                    </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      onClick={(inventory) => {
-                        if (product.inventoryCount) {
-                          props.addProduct(product);
-                          props.inventoryAction(product);
-                        } else {
-                          alert("empty item");
-                        }
-                      }}
-                    >
-                      Add to Cart
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            );
-          }
+          return (
+            <Grid item key={product.name} xs={12} sm={6} md={4}>
+              <Card className={classes.card}>
+                <CardMedia
+                  className={classes.cardMedia}
+                  image={product.img}
+                  title={product.name}
+                />
+                <CardContent className={classes.cardContent}>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {product.name}
+                  </Typography>
+                  <Typography>
+                    Category: {product.category} <br />
+                    Price: {product.price} Jd <br />
+                    Inventory: {product.inventoryCount}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button size="small" color="primary">
+                    View
+                  </Button>
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={(inventory) => {
+                      if (product.inventoryCount) {
+                        props.addProduct(product);
+                        props.inventoryAction(product);
+                      } else {
+                        alert("empty item");
+                      }
+                    }}
+                  >
+                    Add to Cart
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          );
         })}
       </Grid>
     </Container>
@@ -85,7 +84,7 @@ const Products = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  products: state.ReduceProducts.products,
+  products: state.ReduceProducts.activeProduct,
   activeCategory: state.ReduceCategory.activeCategory,
 });
 const mapDispatchToProps = { addProduct, inventoryAction };

@@ -1,5 +1,4 @@
 import React from "react";
-import { If } from "react-if";
 import { connect } from "react-redux";
 import { deleteProduct } from "../../store/actions";
 import { Button } from "@material-ui/core";
@@ -11,25 +10,27 @@ const SimpleCart = (props) => {
 
     
       <section >
-        <If condition={() => props.cart.length !== 0}>
+       
           <ui>
-            {props.cart.map((item, idx) => {
+            { props.cart.show&&
+            props.cart.cart.map((item, idx) => {
               return (
                 <li key={idx}>
                   <span>{item.name}</span>
                   <Button
                     color="secondary"
                     onClick={() => {
-                      props.deleteProduct(item);
+                      props.deleteProduct(item,idx);
                     }}
                   >
-                    Delete
+                   
+                    Delete 
                   </Button>
                 </li>
               );
             })}
           </ui>
-        </If>
+    
       </section>
       </div>
     </>
@@ -37,7 +38,7 @@ const SimpleCart = (props) => {
 };
 
 const mapStateToprops = (state) => {
-  return { cart: state.cartReducer.cart };
+  return { cart: state.cartReducer };
 };
 const mapDispatchToProps = { deleteProduct };
 

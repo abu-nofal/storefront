@@ -35,6 +35,7 @@ let initialState = {
       img: "https://2.bp.blogspot.com/-N-OmV9Wi5sM/XK70kcYjAQI/AAAAAAACSzQ/j1bHjkBmvrwwZvmDPRXb2hBG0vDukEwpACLcBGAs/s1600/01.JPG",
     },
   ],
+  activeProduct:[]
 };
 
 const ReduceProducts = (state = initialState, action) => {
@@ -42,17 +43,15 @@ const ReduceProducts = (state = initialState, action) => {
 
   switch (type) {
     case "ACTIVE":
-      let product = state.products.filter((product) => {
-        return product.category === payload ? product.category : null;
-      });
-      console.log(product);
-      return { ...state, product: product };
+     state.activeProduct=state.products.filter(item=>{
+       return (payload===item.category ? item.category:null)
+     })
+     console.log(state.activeProduct);
+      return state;
 
-    case "RESET":
-      return initialState;
 
     case "ADDPRODUCT":
-      state.products = state.products.map((product) => {
+      state.activeProduct = state.activeProduct.map((product) => {
         if (product.name === payload.name) {
           if (product.inventoryCount > 0) {
             product.inventoryCount = product.inventoryCount - 1;
@@ -61,18 +60,18 @@ const ReduceProducts = (state = initialState, action) => {
         }
         return product;
       });
-      return { ...state };
+      return {...state};
 
     case "DELETE":
-      state.products = state.products.map((product) => {
-        if (product.name === payload.name) {
+      state.activeProduct = state.activeProduct.map((product) => {
+        if (product.name === payload.product.name) {
           product.inventoryCount = product.inventoryCount + 1;
 
           return product;
         }
         return product;
       });
-      return { ...state };
+      return {...state};
 
     default:
       return state;
