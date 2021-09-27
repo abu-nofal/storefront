@@ -5,17 +5,20 @@ export const addProduct = (product) => {
     };
   };
   
-  export const deleteProduct = (product) => {
+  export const deleteProduct = (product,idx) => {
     return {
       type: "DELETE",
-      payload: product,
+      payload: {
+        product:product,
+        idx:idx
+      },
     };
   };
   
   export const showCart = (status) => {
     return {
       type: "SHOW",
-      payload: status,
+      payload: status
     };
   };
   

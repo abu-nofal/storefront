@@ -8,20 +8,18 @@ let initialState = {
     const { type, payload } = action;
     switch (type) {
       case "ADD":
-        const products = state.cart.map((product) => product.name);
-        if (!products.includes(payload.name)) {
-          let count = state.count + 1;
-          return { cart: [...state.cart, payload], show: true, count: count };
-        }
-        return { cart: state.cart, show: true, count: state.count };
+       let cart=[...state.cart,payload]
+      
+        return { cart:cart , show: true, count: state.count +1};
   
       case "DELETE":
-        const product = state.cart.filter((product) => {
-          return product.name !== payload.name;
-        });
-        let count = state.count - 1;
-        return { cart: [...product], show: true, count: count };
+        console.log(payload);
+        const product = state.cart.filter((item,idx)=> idx!==payload.idx)
+        return { cart: product, show: true, count: state.count -1 };
   
+        case "SHOW":
+
+        return {cart:state.cart,show:payload,count:state.count}
       default:
         return state;
     }
