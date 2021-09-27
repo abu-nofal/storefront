@@ -15,6 +15,8 @@ let initialState = {
     description: 'this is a collection of electronics products' 
 }
 ],
+activeCategory:""
+   
 
 }
 
@@ -29,16 +31,9 @@ let initialState = {
   switch(type) {
       case 'ACTIVE':
           let activeCategory=payload
-          let categories = state.categories.map(item => {
-              if (item.normalizedName === payload) {
-                  return {
-                      normalizedName : item.normalizedName, 
-                      displayName: item.displayName ,
-                      description:item.description}
-              }
-              return item;
-          })
-          return { activeCategory,categories};
+          let categories = state.categories
+              
+          return { activeCategory:activeCategory,categories:categories};
       case 'RESET':
           return initialState;
       default:
