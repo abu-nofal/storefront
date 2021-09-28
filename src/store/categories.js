@@ -14,6 +14,11 @@ let initialState = {
       displayName: "ELECTRONICS",
       description: "this is a collection of electronics products",
     },
+    {
+      normalizedName: "men's clothing",
+      displayName: "men's clothing",
+      description: "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+    },
   ],
   activeCategory: "",
 };
