@@ -4,6 +4,7 @@ import { deleteProduct } from "../../store/actions";
 import { Button } from "@material-ui/core";
 
 const SimpleCart = (props) => {
+  console.log(props.cart);
   return (
     <>
     <div style={{position:"absolute", right:"20px"}}>
@@ -16,7 +17,7 @@ const SimpleCart = (props) => {
             props.cart.cart.map((item, idx) => {
               return (
                 <li key={idx}>
-                  <span>{item.name}</span>
+                  <span>{item.item}</span>
                   <Button
                     color="secondary"
                     onClick={() => {
