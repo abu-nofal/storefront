@@ -9,13 +9,12 @@ let initialState = {
     switch (type) {
       case "ADD":
        let cart=[...state.cart,payload]
-      
-        return { cart:cart , show: true, count: state.count +1};
+        return { cart:cart , show: state.show, count: state.count +1};
   
       case "DELETE":
         console.log(payload);
         const product = state.cart.filter((item,idx)=> idx!==payload.idx)
-        return { cart: product, show: true, count: state.count -1 };
+        return { cart: product, show: state.show, count: state.count -1 };
   
         case "SHOW":
 
